@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  web:
+    restart: always
+    container_name: web-easyroad
+    hostname: virtual.pi.ftstecnologia.com.co
+    build:
+      context: ./apache-php
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT_WEB_1:-4080}:8080"
+      - "${PORT_WEB_2:-4020}:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  
+    env_file:
+      - ./db_conf/.env.db
+    environment: 
+      TZ: "${TZ:-America/Guatemala}"
+  
+  
+   
