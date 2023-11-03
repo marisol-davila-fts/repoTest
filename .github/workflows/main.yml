@@ -44,5 +44,5 @@ jobs:
       
       - name: Actualizar version de ECS
         run: |
-        aws ecs update-service --cluster cluster-test --service servicio-git --task-definition tarea-git --force-new-deployment
+          aws ecs update-service --cluster cluster-test --service servicio-git --task-definition tarea-git --force-new-deployment
 
