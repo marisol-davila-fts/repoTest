@@ -28,21 +28,21 @@ RUN yum -y install tomcat
 RUN yum -y install supervisor
 
 # Copy php.ini date.timezona 
-#COPY conf/php.ini /etc/php.ini
-#RUN chmod 644 /etc/php.ini 
-#
-## Copy App
-#COPY www /var/www
-#COPY tomcat/webapps/ /var/lib/tomcat/webapps
-#RUN chmod -R 777 /var/www/html/repoTest
-#
-## Copy file Java.inc
-#RUN sed -i '1993 a\if( empty($client->cancelProxyCreationTag) ) {\$client->cancelProxyCreationTag = 0;\}' /var/lib/tomcat/webapps/PHPJRU/java/Java.inc 
-#
-#EXPOSE 80 8080
-#
-## COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-#COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-#
-#CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf" ]
+COPY conf/php.ini /etc/php.ini
+RUN chmod 644 /etc/php.ini 
+
+# Copy App
+COPY www /var/www
+COPY tomcat/webapps/ /var/lib/tomcat/webapps
+RUN chmod -R 777 /var/www/html/repoTest
+
+# Copy file Java.inc
+RUN sed -i '1993 a\if( empty($client->cancelProxyCreationTag) ) {\$client->cancelProxyCreationTag = 0;\}' /var/lib/tomcat/webapps/PHPJRU/java/Java.inc 
+
+EXPOSE 80 8080
+
+# COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf" ]
 
