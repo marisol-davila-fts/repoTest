@@ -28,7 +28,7 @@ jobs:
         ECR_REPOSITORY: app_test
         IMAGEN_TAG: latest
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGEN_TAG  -f apache-php/Dockerfile .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGEN_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGEN_TAG 
 
   deploy:
